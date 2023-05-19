@@ -110,3 +110,50 @@ def minimax(board, depth,is_maximizing, first_time=True):
         if first_time:
             board[final_i][final_j] = 'O'
         return final_score1,final_j
+      
+def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
+    result = check_winner(board)
+    if depth==0 or  result == 4 or result == -4 or result==-1:
+        return result,1
+
+    if is_maximizing:
+        final_score = -math.inf
+        for i in range(0, 6):
+            for j in range(0, 7):
+                if board[i][j] == '-':
+                    if (i == 5) or (i != 5 and board[i + 1][j] != '-'):
+                            board[i][j] = 'O'
+                            score = prun_minimax(board, depth-1,alpha, beta,False, False)
+                            board[i][j] = '-'
+                            if score[0] > final_score:
+                                final_score = score[0]
+                                print("jj,", i, ",", j, ":", score[0])
+                                final_i, final_j = i, j
+                            alpha = max(alpha, final_score)
+                            if alpha >= beta:
+                                break
+
+        if first_time:
+            board[final_i][final_j] = 'O'
+        return final_score,final_j
+    else:
+        final_score1 = math.inf
+        final_i, final_j = None, None
+        for i in range(0, 6):
+            for j in range(0, 7):
+                if board[i][j] == '-':
+                    if (i == 5) or (i != 5 and board[i + 1][j] != '-'):
+                        board[i][j] = 'X'
+                        score1 = prun_minimax(board, depth-1,alpha, beta,True, False)
+                        board[i][j] = '-'
+                        if score1[0] < final_score1:
+                            final_score1 = score1[0]
+                            print("j5,", i, ",", j, ":", score1[0])
+                            final_i, final_j = i, j
+                        beta = min(beta, final_score1)
+                        if alpha >= beta:
+                              break
+
+        if first_time:
+            board[final_i][final_j] = 'O'
+        return final_score1,final_j
