@@ -612,3 +612,121 @@ def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
         if first_time:
             board[final_i][final_j] = 'O'
         return final_score1,final_j
+a1 = []
+
+
+def GUI(page: ft.Page):
+    page.window_width = 585
+    page.window_height = 530
+    page.bgcolor = ft.colors.WHITE
+
+    def star(e):
+        if d.value != None and a.value != None:
+            page.window_close()
+
+    def diff(e):
+        d.value = e.control.value
+
+    global d
+    d = ft.Text()
+
+    def algo(e):
+        a.value = e.control.value
+
+    global a
+    a = ft.Text()
+    c1 = ft.Container(
+        width=585,
+        height=475,
+        gradient=ft.LinearGradient(
+            begin=ft.alignment.top_left,
+            end=ft.alignment.bottom_right,
+            colors=[ft.colors.BLACK, ft.colors.DEEP_PURPLE_900],
+        ),
+        content=ft.Column([ft.Container(
+            ft.Text(
+                'Welcome in Connect 4 VS AI',
+                size=32,
+                weight=FontWeight.BOLD,
+                color=ft.colors.WHITE,
+            ), padding=ft.padding.only(0, 50, 0, 0), alignment=ft.alignment.center),
+            ft.Row([ft.Column([ft.Container(
+                ft.Text(
+                    'Please choose the difficulty',
+                    size=12,
+                    weight=FontWeight.BOLD,
+                    color=ft.colors.WHITE,
+                ), padding=ft.padding.only(10, 30, 192, 0), alignment=ft.alignment.center),
+                ft.Container(
+                    content=ft.RadioGroup(content=ft.Column([
+                        ft.Radio(value="easy", label="Easy"),
+                        ft.Radio(value="hard", label="Hard")]), on_change=diff)
+                    , )
+            ]), ft.Column([ft.Container(
+                ft.Text(
+                    'Please choose the algorithm',
+                    size=12,
+                    weight=FontWeight.BOLD,
+                    color=ft.colors.WHITE,
+                ), padding=ft.padding.only(0, 25, 0, 0), alignment=ft.alignment.center),
+                ft.Container(
+                    content=ft.RadioGroup(content=ft.Column([
+                        ft.Radio(value="minimax", label="Minimax"),
+                        ft.Radio(value="alpha beta pruining", label="Alpha Beta Pruining"),
+                    ]), on_change=algo)
+                    , )
+            ])]),
+            ft.Container(content=ft.ElevatedButton("Start", on_click=star, bgcolor=ft.colors.WHITE),
+                         alignment=ft.alignment.center,
+                         padding=ft.padding.only(0, 100, 0, 0))])
+    )
+    page.add(c1)
+
+
+countn = 0
+
+
+def main():
+    global countn
+    board1 = Board()
+    time.sleep(2)
+    counter = 0
+    game_end = False
+    while not game_end:
+        (board, game_end) = board1.get_game_grid()
+        if counter == 0:
+            r = 3
+            counter = 1
+        else:
+            if d.value == "easy" and a.value == "minimax":
+                result, r = minimax(board, 2, False)
+            elif d.value == "hard" and a.value == "minimax":
+                result, r = minimax(board, 5, False)
+            elif d.value == "easy" and a.value == "alpha beta pruining":
+                result, r = prun_minimax(board, 2, -math.inf, math.inf, False)
+            elif d.value == "hard" and a.value == "alpha beta pruining":
+                result, r = prun_minimax(board, 5, -math.inf, math.inf, False)
+        board1.print_grid(board)
+        board1.select_column(r)
+        for i in range(len(board)):
+            print(board[i])
+        print('Number of nodes : ', len(a1))
+        countn = countn + len(a1)
+        a1.clear()
+        time.sleep(2)
+    print('total number of nodes : ', countn)
+
+
+if __name__ == "__main__":
+    ft.app(target=GUI)
+    if d.value != None and a.value != None:
+        driver = webdriver.Edge()
+        driver.maximize_window()
+        driver.get("http://kevinshannon.com/connect4/")
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+        time.sleep(2)
+        element2 = driver.find_element(By.ID, "single")
+        element2.click()
+        main()
+        driver.close()
