@@ -590,9 +590,9 @@ def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
                             if score[0] > final_score:
                                 final_score = score[0]
                                 final_i, final_j = i, j
-                            alpha = max(alpha, final_score)
-                            if alpha >= beta:
-                                break
+                            if final_score>=beta:
+                               return final_score, final_j
+                            alpha=max(alpha,final_score)
 
         if first_time:
             board[final_i][final_j] = 'O'
@@ -610,9 +610,9 @@ def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
                         if score1[0] < final_score1:
                             final_score1 = score1[0]
                             final_i, final_j = i, j
-                        beta = min(beta, final_score1)
-                        if alpha >= beta:
-                              break
+                        if final_score1<=alpha:
+                            return final_score1, final_j
+                        beta=min(beta,final_score1)
 
         if first_time:
             board[final_i][final_j] = 'O'
