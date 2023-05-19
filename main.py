@@ -99,7 +99,7 @@ def check_winner(board):
                 third = first + 2
                 forth = first + 3
                 if equivelant_not_empty(board[row][first], board[row][second], board[row][third], board[row][forth]):
-                    return 4 if board[row][index] == 'O' else -4
+                    return 40 if board[row][index] == 'O' else -40
         for index in range(0, 4):
             for row in range(0, 6):
                 first = index
@@ -195,7 +195,7 @@ def check_winner(board):
                 forth = first + 3
                 if equivelant_not_empty(board[first][index], board[second][index], board[third][index],
                                         board[forth][index]):
-                    return 4 if board[row][index] == 'O' else -4
+                    return 40 if board[row][index] == 'O' else -40
         for index in range(0, 7):
             for row in range(0, 3):
                 first = row
@@ -245,7 +245,7 @@ def check_winner(board):
             forth2 = first2 + 3
             if equivelant_not_empty(board[first][first2], board[second][second2], board[third][third2],
                                     board[forth][forth2]):
-                return 4 if board[first][first2] == 'O' else -4
+                return 40 if board[first][first2] == 'O' else -40
     for index in range(0, 4):
         for row in range(0, 3):
             first = row
@@ -391,7 +391,7 @@ def check_winner(board):
             forth2 = first2 + 3
             if equivelant_not_empty(board[first][first2], board[second][second2], board[third][third2],
                                     board[forth][forth2]):
-                return 4 if board[first][first2] == 'O' else -4
+                return 40 if board[first][first2] == 'O' else -40
     for index in range(0, 4):
         for row in range(3, 6):
             first = row
@@ -523,19 +523,17 @@ def check_winner(board):
             if equivelant_not_empty11(board[first][first2], board[second][second2], board[third][third2],
                                       board[forth][forth2]):
                 return 1 if board[first][first2] == 'O' else -10
-    tie = True
     for i in range(0, 6):
         for j in range(0, 7):
             if board[i][j] == '-':
-                tie = False
-    if tie:
-        return -1
+                return 1
+
     return 0
 # my code part
 
 def minimax(board, depth,is_maximizing, first_time=True):
     result = check_winner(board)
-    if depth==0 or  result == 4 or result == -4 or result==-1:
+    if depth==0 or  result == 40 or result == -40 or result==-1:
         return result,1
 
     if is_maximizing:
@@ -575,7 +573,7 @@ def minimax(board, depth,is_maximizing, first_time=True):
       
 def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
     result = check_winner(board)
-    if depth==0 or  result == 4 or result == -4 or result==-1:
+    if depth==0 or  result == 40 or result == -40 or result==-1:
         return result,1
 
     if is_maximizing:
