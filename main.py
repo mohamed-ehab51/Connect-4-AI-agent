@@ -9,7 +9,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import math
 # GAME LINK
 # http://kevinshannon.com/connect4/
-a1 = []
 
 board = [    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -550,8 +549,6 @@ def minimax(board, depth,is_maximizing, first_time=True):
                             board[i][j] = '-'
                             if score[0] > final_score:
                                 final_score = score[0]
-                                print("jj,", i, ",", j, ":", score[0])
-
                                 final_i, final_j = i, j
 
         if first_time:
@@ -569,7 +566,6 @@ def minimax(board, depth,is_maximizing, first_time=True):
                         board[i][j] = '-'
                         if score1[0] < final_score1:
                             final_score1 = score1[0]
-                            print("j5,", i, ",", j, ":", score1[0])
                             final_i, final_j = i, j
 
 
@@ -593,7 +589,6 @@ def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
                             board[i][j] = '-'
                             if score[0] > final_score:
                                 final_score = score[0]
-                                print("jj,", i, ",", j, ":", score[0])
                                 final_i, final_j = i, j
                             alpha = max(alpha, final_score)
                             if alpha >= beta:
@@ -614,7 +609,6 @@ def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
                         board[i][j] = '-'
                         if score1[0] < final_score1:
                             final_score1 = score1[0]
-                            print("j5,", i, ",", j, ":", score1[0])
                             final_i, final_j = i, j
                         beta = min(beta, final_score1)
                         if alpha >= beta:
@@ -693,11 +687,9 @@ def GUI(page: ft.Page):
     page.add(c1)
 
 
-countn = 0
 
 
 def main():
-    global countn
     board1 = Board()
     time.sleep(2)
     counter = 0
@@ -716,16 +708,8 @@ def main():
                 result, r = prun_minimax(board, 2, -math.inf, math.inf, False)
             elif d.value == "hard" and a.value == "alpha beta pruining":
                 result, r = prun_minimax(board, 5, -math.inf, math.inf, False)
-        board1.print_grid(board)
         board1.select_column(r)
-        for i in range(len(board)):
-            print(board[i])
-        print('Number of nodes : ', len(a1))
-        countn = countn + len(a1)
-        a1.clear()
         time.sleep(2)
-    print('total number of nodes : ', countn)
-
 
 if __name__ == "__main__":
     ft.app(target=GUI)
