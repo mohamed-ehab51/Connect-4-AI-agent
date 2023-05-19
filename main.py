@@ -41,6 +41,43 @@ def equivelant_not_empty5(x, y, z, w):
     if y == z and y == w and x == '-' and y != '-':
         return True
     return False
+def equivelant_not_empty6(x, y, z, w):
+    if x == y and z == '-' and w == '-' and x != '-':
+        return True
+    return False
+
+
+def equivelant_not_empty7(x, y, z, w):
+    if z == w and x == '-' and y == '-' and z != '-':
+        return True
+    return False
+
+
+# x-x-
+# -x-x
+def equivelant_not_empty8(x, y, z, w):
+    if x == z and y == '-' and w == '-' and x != '-':
+        return True
+    return False
+
+
+def equivelant_not_empty9(x, y, z, w):
+    if y == w and x == '-' and z == '-' and y != '-':
+        return True
+    return False
+
+
+# x--x
+def equivelant_not_empty10(x, y, z, w):
+    if x == w and y == '-' and z == '-' and x != '-':
+        return True
+    return False
+
+
+def equivelant_not_empty11(x, y, z, w):
+    if y == z and x == '-' and w == '-' and y != '-':
+        return True
+    return False
 
 def check_winner(board):
 
@@ -87,7 +124,58 @@ def check_winner(board):
                 forth = first + 3
                 if equivelant_not_empty5(board[row][first], board[row][second], board[row][third], board[row][forth]):
                     return 2 if board[row][index] == 'O' else -20
-       ## column
+           for index in range(0, 4):
+        for row in range(0, 6):
+            first = index
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty6(board[row][first], board[row][second], board[row][third], board[row][forth]):
+                return 1 if board[row][index] == 'O' else -10
+
+    for index in range(0, 4):
+        for row in range(0, 6):
+            first = index
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty7(board[row][first], board[row][second], board[row][third], board[row][forth]):
+                return 1 if board[row][index] == 'O' else -10
+
+    for index in range(0, 4):
+        for row in range(0, 6):
+            first = index
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty8(board[row][first], board[row][second], board[row][third], board[row][forth]):
+                return 1 if board[row][index] == 'O' else -10
+
+    for index in range(0, 4):
+        for row in range(0, 6):
+            first = index
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty9(board[row][first], board[row][second], board[row][third], board[row][forth]):
+                return 1 if board[row][index] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(0, 6):
+            first = index
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty10(board[row][first], board[row][second], board[row][third], board[row][forth]):
+                return 1 if board[row][index] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(0, 6):
+            first = index
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty11(board[row][first], board[row][second], board[row][third], board[row][forth]):
+                return 1 if board[row][index] == 'O' else -10
+      ## column
 
         for index in range(0, 7):
             for row in range(0, 3):
@@ -116,13 +204,322 @@ def check_winner(board):
                 if equivelant_not_empty5(board[first][index], board[second][index], board[third][index],
                                         board[forth][index]):
                     return 2 if board[row][index] == 'O' else -20
+      for index in range(0, 7):
+         for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty6(board[first][index], board[second][index], board[third][index],
+                                     board[forth][index]):
+                return 1 if board[row][index] == 'O' else -10
+
+    for index in range(0, 7):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            if equivelant_not_empty7(board[first][index], board[second][index], board[third][index],
+                                     board[forth][index]):
+                return 1 if board[row][index] == 'O' else -10         
+        for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty(board[first][first2], board[second][second2], board[third][third2],
+                                    board[forth][forth2]):
+                return 4 if board[first][first2] == 'O' else -4
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty2(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty3(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty4(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty5(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty6(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty7(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty8(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10          
 
         ##mostafa
+        for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty9(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty10(board[first][first2], board[second][second2], board[third][third2],
+                                      board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(0, 3):
+            first = row
+            second = first + 1
+            third = first + 2
+            forth = first + 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty11(board[first][first2], board[second][second2], board[third][third2],
+                                      board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty(board[first][first2], board[second][second2], board[third][third2],
+                                    board[forth][forth2]):
+                return 4 if board[first][first2] == 'O' else -4
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty2(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty3(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty4(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty5(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 2 if board[first][first2] == 'O' else -20
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty6(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty7(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty8(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty9(board[first][first2], board[second][second2], board[third][third2],
+                                     board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty10(board[first][first2], board[second][second2], board[third][third2],
+                                      board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    for index in range(0, 4):
+        for row in range(3, 6):
+            first = row
+            second = first - 1
+            third = first - 2
+            forth = first - 3
+            first2 = index
+            second2 = first2 + 1
+            third2 = first2 + 2
+            forth2 = first2 + 3
+            if equivelant_not_empty11(board[first][first2], board[second][second2], board[third][third2],
+                                      board[forth][forth2]):
+                return 1 if board[first][first2] == 'O' else -10
+    tie = True
     for i in range(0, 6):
         for j in range(0, 7):
-            if board[i][j] == ' ':
-                return 1
-
+            if board[i][j] == '-':
+                tie = False
+    if tie:
+        return -1
     return 0
 # my code part
 
