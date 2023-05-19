@@ -1,5 +1,16 @@
+from flet_core import FontWeight
+from board import Board
+import time
+import flet as ft
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import math
-a1=[]
+# GAME LINK
+# http://kevinshannon.com/connect4/
+a1 = []
+
 board = [    [' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' '],
              [' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -612,7 +623,6 @@ def prun_minimax(board, depth,alpha, beta,is_maximizing, first_time=True):
         if first_time:
             board[final_i][final_j] = 'O'
         return final_score1,final_j
-a1 = []
 
 
 def GUI(page: ft.Page):
